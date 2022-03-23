@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "terra-gallery/static/css/main.bd8d14f4.css",
+    "main.js": "terra-gallery/static/js/main.48d3ce1b.js",
+    "index.html": "terra-gallery/index.html",
+    "main.bd8d14f4.css.map": "terra-gallery/static/css/main.bd8d14f4.css.map",
+    "main.48d3ce1b.js.map": "terra-gallery/static/js/main.48d3ce1b.js.map"
+  },
+  "entrypoints": [
+    "terra-gallery/static/css/main.bd8d14f4.css",
+    "terra-gallery/static/js/main.48d3ce1b.js"
+  ]
+}
