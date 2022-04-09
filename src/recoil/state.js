@@ -1,4 +1,4 @@
-import { selector, atom, selectorFamily } from 'recoil'
+import { selector, atom, selectorFamily, waitForAll } from 'recoil'
 import knowhereData from './knowhere.json'
 import REData from './re.json'
 
@@ -54,11 +54,18 @@ export const myNFTsSelector = selectorFamily(
     {
         key: 'myNFTsSelector',
         get: contract => async ({ get }) => {
-
+            if(!contract) return []
+            console.log({contract})
             const lcd = get(LCDAtom)
             const wallet = get(connectedWalletAtom)
-            const results = await getAllRecursive(lcd.wasm, contract, { "tokens": { "owner": wallet, "limit": 30 } }, '')
-            return results.tokens
+            console.log({wallet, lcd})
+            try{
+
+                const results = await getAllRecursive(lcd.wasm, contract, { "tokens": { "owner": wallet, "limit": 30 } }, '')
+                return results.tokens
+            }catch(e){
+                console.log(e, contract)
+            }
         }
 
     }
@@ -71,7 +78,7 @@ export const nftDataSelector = selectorFamily(
             const lcd = get(LCDAtom)
             const contract = get(selectedContractAtom)
             const results = await lcd.wasm.contractQuery(contract.contract, { all_nft_info: { token_id:id } })
-            // console.log({results})
+            console.log({results})
             return results
         }
 
@@ -92,47 +99,28 @@ export const selectedContractAtom = atom({
 })
 export const nftAmountAtom = atom({
     key: 'nftAmountAtom',
-    default: undefined
+    default:{}
 })
 
 
 async function getAllRecursive(wasm, contract, query, after) {
     const afterValue = after.length>0 ?{start_after:after}:{};
-    // console.log({after})
-    const { tokens } = await wasm.contractQuery(contract, { tokens: { ...query.tokens, ...afterValue } })
+        const  result  = await wasm.contractQuery(contract, { tokens: { ...query.tokens, ...afterValue } })
+        if(!result) return []
+        const tokens = result.tokens || result.ids
 
-    if (tokens.length === 0) {
-        return []
-    }
-    const newAfter = tokens[tokens.length - 1]
+        if (!tokens || tokens.length === 0) {
+            return []
+        }
+        const newAfter = tokens[tokens.length - 1]
+        
+        const nextResults = await getAllRecursive(wasm, contract, query, typeof newAfter ==="string" ? newAfter : newAfter.token_id)
+        
+        return {
+            tokens: [
+                ...tokens,
+                ...(nextResults.tokens || [])
+            ]
+        }
 
-    const nextResults = await getAllRecursive(wasm, contract, query, typeof newAfter ==="string" ? newAfter : newAfter.token_id)
-
-    return {
-        tokens: [
-            ...tokens,
-            ...(nextResults.tokens || [])
-        ]
-    }
 }
-
-// export const nftAmountSelector = selector({
-//     key:'nftAmountSelector',
-//     get: async({get}) => {
-//         const contracts = get(contractsSelector)
-//         console.log('amount')
-//         const nfts = await contracts.map(async contract =>  await get(myNFTsSelector(contract.contract)))
-
-
-//         console.log({nfts}, 'amount')
-//         const amount = nfts.filter(nft => {
-//             console.log({nft},'f')
-//             return nft
-//         })
-//         .reduce((prev, curr)=> {
-//             if(!curr) return prev
-//             console.log({curr})
-//             return prev+curr.length
-//         },0)
-//     }
-// })

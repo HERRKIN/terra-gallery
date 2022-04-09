@@ -1,19 +1,30 @@
 .App {
   display: flex;
   justify-content: space-between;
+  background: linear-gradient(
+    28deg,
+    rgba(167, 22, 160, 1) 0%,
+    rgba(102, 0, 23, 1) 46%,
+    rgba(164, 43, 99, 1) 72%,
+    rgba(21, 129, 153, 1) 100%
+  );
+  width: 100vw;
+  height: 100vh;
+  padding-bottom: 100px;
+  display: flex;
+  overflow: hidden;
   > aside {
-    flex: 2;
-    max-width: 400px;
-    height: 100vh;
+    width: 100%;
+    height: calc(100vh - 62px);
     overflow-y: scroll;
     overflow-x: hidden;
     background-color: rgb(239, 239, 239);
-
   }
   > section {
     flex: 4;
     display: inline-block;
-    >div{
+    height: calc(100vh - 62px);
+    > div {
       display: inline-flex;
       justify-content: center;
       align-items: center;
@@ -24,13 +35,23 @@
   }
 }
 .project {
-  display: flex;
+  display: inline-flex;
   border: none;
   width: 100%;
+  max-width: 48%;
+  gap: 10;
+  aspect-ratio: 1/1;
   align-items: center;
   cursor: pointer;
   position: relative;
-  .nftCount{
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.8px);
+  -webkit-backdrop-filter: blur(6.8px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  .nftCount {
     position: absolute;
     top: 10px;
     right: 15px;
@@ -38,35 +59,48 @@
     justify-self: flex-end;
     padding: 0;
     margin: 0;
-    width: auto!important;
-    background: darkblue;
+    width: auto !important;
+    filter: drop-shadow(1px 2px 1px black);
     color: white;
     font-weight: bold;
     padding: 10px;
     height: 2em;
+    font-size: 1.3em;
   }
-  &:hover {
-    >div{
-      background-color: #282c34;
-      color: white;
-    }
-  }
-  &:active {
-    > div {
-      padding: 10px;
-      > img {
-        height: 90px;
-      }
-    }
-  }
+  // &:hover {
+  //   > div {
+  //     background-color: #282c34;
+  //     color: white;
+  //   }
+  // }
+  // &:active {
+  //   > div {
+  //     padding: 10px;
+  //     > img {
+  //       height: 90px;
+  //     }
+  //   }
+  // }
   > div {
     display: flex;
+    flex-direction: column;
     padding: 5px;
     border-radius: 10px;
-    background-color: skyblue;
     width: 100%;
     align-items: center;
     cursor: pointer;
+
+    > h3 {
+      background-color: rgba(0, 0, 0, 0.15);
+      width: 100%;
+    
+
+      position: absolute;
+      bottom: 10px;
+      backdrop-filter: blur(6.8px);
+      filter: drop-shadow(1px 1px 0px black);
+      z-index: 2;
+    }
     > div {
       display: flex;
       width: 100%;
@@ -113,22 +147,28 @@ button {
   padding: 10px;
   display: flex;
   align-items: center;
-  border: 3px solid white;
   border-radius: 10px;
-  background: transparent;
+  border: none;
+  background: linear-gradient(180deg, rgba(253, 29, 29, 1) 0%, rgba(228, 144, 83, 1) 69%, rgba(226, 153, 87, 1) 100%);
   color: white;
   font-weight: bold;
   cursor: pointer;
-  &:hover{
-    border-color: skyblue;
-    color: skyblue;
-    background-color: white;
-    box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px, rgba(255, 255, 255, 0.12) 0px -12px 30px, rgba(255, 255, 255, 0.12) 0px 4px 6px, rgba(255, 255, 255, 0.17) 0px 12px 13px, rgba(255, 255, 255, 0.09) 0px -3px 5px;
+  > img {
+    width: 2em;
+    height: 2em;
+    margin: 5px;
+    filter: drop-shadow(0px 1px 0px white);
+  }
+  &:hover {
+    box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px, rgba(255, 255, 255, 0.12) 0px -12px 30px,
+      rgba(255, 255, 255, 0.12) 0px 4px 6px, rgba(255, 255, 255, 0.17) 0px 12px 13px,
+      rgba(255, 255, 255, 0.09) 0px -3px 5px;
   }
 }
-h1{
-  background: -webkit-linear-gradient(45deg, #09009f, #00ff95 80%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(1px 1px 0px black);
+h1 {
+  // background: -webkit-linear-gradient(45deg, #09009f, #00ff95 80%);
+  background: -webkit-linear-gradient(45deg, white, white 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  // filter: drop-shadow(1px 1px 0px black);
 }
