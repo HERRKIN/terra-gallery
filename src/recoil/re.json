@@ -19,6 +19,15 @@
             "type": "Collection"
         },
         {
+        
+            "addr": "terra10t4pgfs6s3qeykqgfq9r74s89jmu7zx5gfkga5",
+            "slug": null,
+            "banner_src": "https://d75aawrtvbfp1.cloudfront.net/ipfs://QmTRE4fcXd9co5tVVs3zn9TAyFpFuzVjrk69Aoa43jDh76",
+            "src": "https://d75aawrtvbfp1.cloudfront.net/ipfs://QmTRE4fcXd9co5tVVs3zn9TAyFpFuzVjrk69Aoa43jDh76",
+            "name": "Galactic Punks staked",
+            "description": "Galactic Punks are 10,921 randomly generated Punks minted into the Terraverse."
+        },
+        {
             "created_at": "None",
             "addr": "lunabulls",
             "slug": "lunabulls",

@@ -23,6 +23,7 @@ export function ConnectSample() {
       scale: 0.1
     }}
       animate={{ opacity: 1, scale: 1 }} exit={{ scale: 20, opacity: 0 }} style={{ 
+        height:'100vh',
         display:'flex',
         justifyContent:'space-around', 
         alignItems: 'center', 

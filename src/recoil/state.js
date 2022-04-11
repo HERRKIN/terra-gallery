@@ -55,13 +55,17 @@ export const myNFTsSelector = selectorFamily(
         key: 'myNFTsSelector',
         get: contract => async ({ get }) => {
             if(!contract) return []
-            console.log({contract})
             const lcd = get(LCDAtom)
             const wallet = get(connectedWalletAtom)
-            console.log({wallet, lcd})
             try{
 
-                const results = await getAllRecursive(lcd.wasm, contract, { "tokens": { "owner": wallet, "limit": 30 } }, '')
+                if(["terra10t4pgfs6s3qeykqgfq9r74s89jmu7zx5gfkga5"].includes(contract )){
+
+                    const results = await lcd.wasm.contractQuery(contract, {  "staked_by_addr":{ "address": wallet, "limit": 30} }) 
+                    console.log({results})
+                    return results.map(item => item.stake)
+                }
+                const results = await getAllRecursive(lcd.wasm, contract, { "tokens": { "owner": wallet, "limit": 30 } }, '') 
                 return results.tokens
             }catch(e){
                 console.log(e, contract)
@@ -78,7 +82,7 @@ export const nftDataSelector = selectorFamily(
             const lcd = get(LCDAtom)
             const contract = get(selectedContractAtom)
             const results = await lcd.wasm.contractQuery(contract.contract, { all_nft_info: { token_id:id } })
-            console.log({results})
+
             return results
         }
 
@@ -102,12 +106,20 @@ export const nftAmountAtom = atom({
     default:{}
 })
 
+const getTokens = (data, contract) => {
+    if(data.ids) return data.ids
+    if(data.tokens) return data.tokens 
+    if(["terra10t4pgfs6s3qeykqgfq9r74s89jmu7zx5gfkga5"].includes(contract)){
+        console.log('galactic freeze')
+        return data.map(item => stake.token_id )
+    }
+}
 
 async function getAllRecursive(wasm, contract, query, after) {
     const afterValue = after.length>0 ?{start_after:after}:{};
         const  result  = await wasm.contractQuery(contract, { tokens: { ...query.tokens, ...afterValue } })
         if(!result) return []
-        const tokens = result.tokens || result.ids
+        const tokens = getTokens(result, contract)
 
         if (!tokens || tokens.length === 0) {
             return []

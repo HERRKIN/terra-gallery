@@ -1,6 +1,7 @@
 .App {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   background: linear-gradient(
     28deg,
     rgba(167, 22, 160, 1) 0%,
@@ -9,10 +10,10 @@
     rgba(21, 129, 153, 1) 100%
   );
   width: 100vw;
-  height: 100vh;
-  padding-bottom: 100px;
+  height: 100%;
   display: flex;
   overflow: hidden;
+  position: relative;
   > aside {
     width: 100%;
     height: calc(100vh - 62px);
@@ -25,7 +26,7 @@
     display: inline-block;
     height: calc(100vh - 62px);
     > div {
-      display: inline-flex;
+      display: flex;
       justify-content: center;
       align-items: center;
       padding: 5px;
@@ -35,7 +36,7 @@
   }
 }
 .project {
-  display: inline-flex;
+  display: flex;
   border: none;
   width: 100%;
   max-width: 48%;
@@ -44,9 +45,9 @@
   align-items: center;
   cursor: pointer;
   position: relative;
-  background: rgba(255, 255, 255, 0.35);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.35);
   backdrop-filter: blur(6.8px);
   -webkit-backdrop-filter: blur(6.8px);
   border: 1px solid rgba(255, 255, 255, 0.35);
@@ -93,7 +94,7 @@
     > h3 {
       background-color: rgba(0, 0, 0, 0.15);
       width: 100%;
-    
+      padding:10px;
 
       position: absolute;
       bottom: 10px;
@@ -171,4 +172,22 @@ h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   // filter: drop-shadow(1px 1px 0px black);
+}
+
+.wallet-readonly-modal--content, .wallet-wc-modal--content{
+  color:white;
+  background: rgba(255, 255, 255, 0.35)!important;
+  backdrop-filter: blur(6.8px);
+  -webkit-backdrop-filter: blur(6.8px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  p{
+    color:white !important;
+    font-weight: bold;
+  }
+  >div{
+    >label{
+      color: white!important;
+      font-weight: bold;
+    }
+  }
 }

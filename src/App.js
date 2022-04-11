@@ -33,10 +33,8 @@ function App() {
     return <div className="App"        >
         {!wallet ? <Connect /> : <List />}
         <div style={{
-            height: 20, color: 'white',
-            position: 'absolute',
-            bottom: 0, width: '100%',
-       
+            height: 20, color: 'white', width: '100%', marginTop:-20,
+            position:'fixed', bottom:0
         }}>
             <div style={{
                 position: 'relative',
