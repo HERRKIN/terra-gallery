@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/terra-gallery/static/css/main.05a141aa.css",
-    "main.js": "/terra-gallery/static/js/main.963124e1.js",
-    "index.html": "/terra-gallery/index.html",
-    "main.05a141aa.css.map": "/terra-gallery/static/css/main.05a141aa.css.map",
-    "main.963124e1.js.map": "/terra-gallery/static/js/main.963124e1.js.map"
+    "main.css": "/terra-gallery.xyz/static/css/main.05a141aa.css",
+    "main.js": "/terra-gallery.xyz/static/js/main.ee4a5bcc.js",
+    "index.html": "/terra-gallery.xyz/index.html",
+    "main.05a141aa.css.map": "/terra-gallery.xyz/static/css/main.05a141aa.css.map",
+    "main.ee4a5bcc.js.map": "/terra-gallery.xyz/static/js/main.ee4a5bcc.js.map"
   },
   "entrypoints": [
     "static/css/main.05a141aa.css",
-    "static/js/main.963124e1.js"
+    "static/js/main.ee4a5bcc.js"
   ]
 }
