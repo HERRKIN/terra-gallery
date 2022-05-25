@@ -29,7 +29,19 @@ function App() {
     // console.log({wallet})
     //   return (
     //   <AnimatePresence exitBeforeEnter>
-
+    const goToTwitter = ( ) => {
+        console.log('https://twitter.com/terragallerynft')
+        const url = "https://twitter.com/terragallerynft"
+        window.open(url, '_blank').focus();
+    }
+    const goToGh = ( ) => {
+        const url = "https://github.com/HERRKIN"
+        window.open(url, '_blank').focus();
+    }
+    const goToLi = ( ) => {
+        const url = "https://www.linkedin.com/in/joseandradez/"
+        window.open(url, '_blank').focus();
+    }
     return <div className="App"        >
         {!wallet ? <Connect /> : <List />}
         <div style={{
@@ -51,9 +63,9 @@ function App() {
             background: 'rgba(255, 255, 255, 0.35)',
             boxSadow: 'rgb(0 0 0 / 10%) 0px 4px 30px',
             backdropFilter: 'blur(6.8px)' }}></div>
-                <div style={{ height: 50, marginTop: -27, width: 50, background: 'rgba(255,255,255,0.25)', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 20, fontWeight: 'bold', fontSize: '2em', zIndex:2,filter: 'drop-shadow(2px 4px 1px black)' }}><FiGithub /></div>
-                <div style={{ height: 50, marginTop: -27, width: 50, background: 'rgba(255,255,255,0.25)', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 20, fontWeight: 'bold', fontSize: '2em', zIndex:2,filter: 'drop-shadow(2px 4px 1px black)' }}><FiTwitter /></div>
-                <div style={{ height: 50, marginTop: -27, width: 50, background: 'rgba(255,255,255,0.25)', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 20, fontWeight: 'bold', fontSize: '2em',zIndex:2,filter: 'drop-shadow(2px 4px 1px black)'  }}><FiLinkedin /></div>
+                <div style={{cursor:'pointer', height: 50, marginTop: -27, width: 50, background: 'rgba(255,255,255,0.25)', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 20, fontWeight: 'bold', fontSize: '2em', zIndex:2,filter: 'drop-shadow(2px 4px 1px black)' }} onTouchEnd={goToGh} onClick={goToGh}><FiGithub /></div>
+                <div style={{ cursor:'pointer', height: 50, marginTop: -27, width: 50, background: 'rgba(255,255,255,0.25)', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 20, fontWeight: 'bold', fontSize: '2em', zIndex:2,filter: 'drop-shadow(2px 4px 1px black)' }} onTouchEnd={goToTwitter} onClick={goToTwitter}><FiTwitter /></div>
+                <div style={{ cursor:'pointer',height: 50, marginTop: -27, width: 50, background: 'rgba(255,255,255,0.25)', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 20, fontWeight: 'bold', fontSize: '2em',zIndex:2,filter: 'drop-shadow(2px 4px 1px black)'  }} onTouchEnd={goToLi} onClick={goToLi}><FiLinkedin /></div>
 
             </div>
 

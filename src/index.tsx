@@ -13,9 +13,12 @@ import App from 'App'
 import { RecoilRoot } from 'recoil'
 
 getChainOptions().then((chainOptions) => {
+  console.log(chainOptions)
+  const {defaultNetwork, walletConnectChainIds} = chainOptions
+
   ReactDOM.render(
     <RecoilRoot >
-    <WalletProvider {...chainOptions}>
+    <WalletProvider {...{defaultNetwork,walletConnectChainIds:{'0':walletConnectChainIds['1']}}}>
       <App />
     </WalletProvider>
     </RecoilRoot >,

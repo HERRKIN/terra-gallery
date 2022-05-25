@@ -1,7 +1,7 @@
 {
   "name": "cra-template",
   "version": "1.0.0",
-  "homepage": "https://herrkin.github.io/terra-gallery",
+  "homepage": "http://terragallery.xyz",
   "scripts": {
     "build": "react-app-rewired build",
     "start": "react-app-rewired start",

@@ -2,6 +2,24 @@
     "collections": [
         {
             "created_at": "2021-10-02 12:35:26.774021",
+            "addr": "terra1t37vatdcsmg4qlyy8n4fgapecce5g4gw5mlzlt",
+            "slug": null,
+            "banner_src": "https://d75aawrtvbfp1.cloudfront.net/partners/deviantsfactions/banner.jpeg",
+            "src": "https://d75aawrtvbfp1.cloudfront.net/partners/deviantsfactions/logo.jpg",
+            "name": "Deviants Factions Cards",
+            "description": "Deviants Factions Cards",
+            "symbol": "GP",
+            "trait_map": null,
+            "volume": 1287300000,
+            "average_price": 52533333,
+            "floor_price": 30000000,
+            "items_count": 10921,
+            "owners_count": 5495,
+            "status": "active",
+            "type": "Collection"
+        },
+        {
+            "created_at": "2021-10-02 12:35:26.774021",
             "addr": "terra103z9cnqm8psy0nyxqtugg6m7xnwvlkqdzm4s4k",
             "slug": null,
             "banner_src": "https://randomearth-mirror.s3.us-east-2.amazonaws.com/banner.jpg",

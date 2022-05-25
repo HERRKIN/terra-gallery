@@ -41,8 +41,8 @@ export const List = () => {
 
                 {!contract ? <ProjectList contracts={contracts} /> :
                     <motion.section initial={{ x: 100 }} animate={{ x: 0 }} exit={{ x: 100 }} style={{
-                        display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center', width: '100%',
-                        height: '100%'
+                        
+                        width: '100%', height: 'auto', display: 'flex', gap: 10, flexWrap: 'wrap', paddingBottom: 100, justifyContent: "center"
                     }}>
                         <ListDetail />
                     </motion.section>}
@@ -56,7 +56,8 @@ export const List = () => {
 const ProjectList = ({ contracts }) => {
     const nftAmount = useRecoilValue(nftAmountAtom)
 
-    return <motion.aside style={{ width: '100%', height: 'auto%', display: 'flex', gap: 10, flexWrap: 'wrap', paddingBottom: 100, justifyContent: "center" }}
+    console.log({nftAmount})
+    return <motion.aside style={{ width: '100%', height: 'auto', display: 'flex', gap: 10, flexWrap: 'wrap', paddingBottom: 100, justifyContent: "center" }}
         initial={{ x: -100 }}
         animate={{ x: 0 }}
         exit={{ x: -100 }}
@@ -77,7 +78,7 @@ const ListItem = ({ contract }) => {
     const setSelectedContract = useSetRecoilState(selectedContractAtom)
     const [nftAmount, setNftAmount] = useRecoilState(nftAmountAtom)
     useEffect(() => {
-        if (nfts.state === 'hasValue' && nfts.contents) {
+        if (nfts.state === 'hasValue' && nfts.contents && nfts.contents.length>0) {
             setNftAmount({ ...nftAmount, [contract.contract]: nfts.contents.length })
         }
     }, [nfts.contents])
@@ -88,7 +89,7 @@ const ListItem = ({ contract }) => {
 
     return nfts.contents && nfts.contents.length > 0 ? <button className='project' key={contract.contract} onClick={() => setSelectedContract(contract)}>
         <div>
-            <img src={contract.icon || 'terra-gallery/no-icon.png'} style={{ width: '100%', aspectRatio: '1/1' }} />
+            <img src={contract.icon || '/no-icon.png'} style={{ width: '100%', aspectRatio: '1/1' }} />
 
             <h3>{contract.name}</h3>
 
@@ -118,11 +119,39 @@ const NFTItem = ({ token }) => {
     const nftData = useRecoilValueLoadable(nftDataSelector(token))
     if (nftData.state === 'loading') return <div>loading nft..</div>
     // console.log(nftData.contents)
+    const getImage =(data) =>{
+        console.log({data})
+        if(!data) return ''
+        const image = data.image || (data.extension && data.extension.image) || ''
+        console.log({image})
+        if(image.includes('ipfs.io/ipfs/')){
+            
+            
+            return`url('${image}')`
+        }
+        if(image.includes('cloudflare')){
+            const ipfs = image.split('ipfs/')[1]
+            
+            return`url('https://ipfs.io/ipfs/${ipfs}')`
+        }
+        if(image){
+            return `url('https://ipfs.io/ipfs/${image.split('ipfs://')[1]}')` 
+        }
+        return null
+    }
+
+
     return <div style={{
         maxWidth: "47%", width: "100%",
-        backgroundImage: nftData.contents.info.extension ? `url(https://cloudflare-ipfs.com/${nftData.contents.info.extension.image.split('ipfs:/').join('ipfs')})` : 'none',
-        backgroundSize: 'cover',
-        borderRadius: 16
+        backgroundImage: getImage(nftData.contents.info),
+        backgroundSize: 'contain',
+        backgroundRepeat:'no-repeat',
+        borderRadius: 16,
+        aspectRatio:'1/1',
+        display: 'flex',
+    maxHeight: '47vw',
+    backgroundPosition: 'center',
+    backgroundColor:'#fff5',
     }}>
         {!nftData.contents.info.extension && <div style={{
             width: '100%',
@@ -136,8 +165,14 @@ const NFTItem = ({ token }) => {
             textTransform: 'uppercase',
             fontWeight: 'bold'
 
-        }}>{nftData.contents.info.image || 'no image for this nft'}</div>}
+        }}>
+            {/* <img src={getImage(nftData.contents.info)} style={{width:0, height:0}} /> */}
+            {/* {nftData.contents.info.image || 'no image for this nft'} */}
+            </div>}
 
+            <video id="background-video" autoPlay loop muted poster={getImage(nftData.info)}>
+        <source src={getImage(nftData.info)} type="video/mp4"/>
+      </video>
 
 
 

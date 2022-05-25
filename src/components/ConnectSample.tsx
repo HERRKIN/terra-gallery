@@ -14,7 +14,7 @@ export function ConnectSample() {
     install,
     disconnect,
   } = useWallet();
-
+console.log({availableConnectTypes})
   return (
     <motion.div 
     key='connect'
